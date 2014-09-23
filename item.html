@@ -1,103 +1,106 @@
 <!DOCTYPE html>
 <html ng-app="">
 <head>
-	<title>ShoppingCartDemo,By Pan Shihao</title>
+	<title>ShoppingCartDemo,Created By Pan Shihao</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href = "css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css"  />
     <script src= "js/bootstrap.js"></script>
 	<script src= "js/angular.js"></script>
 	<script src= "js/myitems.js"></script>
 	<script src= "js/angular-route.js"></script>
-	<style>
-	img{width:18px;}
-	.center,th,.table-width{text-align:center;}
-	.part1{
-		border:2px gray solid;
-		border-radius:25px;
-		-moz-border-radius:25px; /* Old Firefox */}
-	.Total,.TextShadow{text-shadow: 3px 3px 3px #999;}
-	</style>
 </head>
 
 <body ng-controller="itemController">
-	<div class="page-header">
-	  <h1>Shopping Cart Demo</h1>
-	  <p>AngularJS+Bootstrap</p>
-	  <p>Demo说明：</p>
-	  <p>商品列表中，点击购物车图标，会带出商品信息，可以手动修改数量，总价会相应改变。</p>
-	  <p>
-	  清空商品信息，手动输入商品名，若输入的商品名为存在的商品，会带出商品信息，可以手动修改数量，总价会相应改变。</p>
-	  <p>若总价大于100会有20的折扣，Total为总价减去折扣</p>
-	</div>
 	<div class="container">
+
+		<div class="HeadTitle">
+			<h2 class="TextShadow">ShoppingCartDemo</h2>
+			<p>AngularJS+Bootstrap</p>
+		</div>
+
 		<div class="part1 col-md-12">
-	    <h3 class='center'>商品列表</h3>
-	    <table class="table table-striped table-width center">
-	        <thead>
-	        <tr>
-	            <th>商品名</th>
-	            <th>单价</th>
-	            <th>购买</th>
-	        </tr>
-	        </thead>
-	        <tbody>
-	        <tr ng-repeat="item in items">
-	            <td>{{ item.fName }}<img ng-src="{{item.image}}" alt="{{item.description}}"></td>
-	            <td>{{ item.price |currency }}</td>
-	            <td>
-	                <button class="btn" ng-click="edititem(item.id)">
-	                <img src="img/shoppingcart.png"></img>
-	                </button>
-	            </td>
-	        </tr>
-	        </tbody>
-	    </table>	
+			<h2 class='center TextShadow'>商品列表</h2>
+			<hr>
+			<table class="table table-striped table-width center">
+				<thead>
+					<tr>
+						<th>商品名</th>
+						<th>单价</th>
+						<th>购买</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in items" >
+						<td>{{ item.fName }}<img ng-src="{{item.image}}" alt="{{item.description}}"></td>
+						<td>{{ item.price |currency }}</td>
+						<td>
+							<button class="btn" ng-click="edititem(item.id)" ng-class="{active:item.active}">
+								<img src="img/shoppingcart.png"></img>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>	
 		</div>
 
 		<div class="part2 col-md-5 col-md-offset-1">
-	    <h3 ng-show="edit">搜索商品:</h3>
-	    <h3 ng-hide="edit">编辑商品:</h3>
-	    <form class="form-horizontal">
-	        <div class="form-group">
-	            <label class="col-sm-2 control-label">商品名:</label>
-	            <div class="col-sm-10">
-	                <input type="text" ng-model="fName" ng-disabled="!edit" placeholder="请输入商品名">
-	            </div>
-	        </div>
-	        <div class="form-group">
-	            <label class="col-sm-2 control-label">单价:</label>
-	            <div class="col-sm-10">
-	                <input type="text" ng-model="price" ng-disabled="priceEdit" placeholder="单价">
-	            </div>
-	        </div>
-	        <div class="form-group">
-	            <label class="col-sm-2 control-label">数量:</label>
-	            <div class="col-sm-10">
-	                <input type="text" ng-model="count" placeholder="请输入数量">
-	            </div>
-	        </div>
-	        <div class="form-group">
-	            <label class="col-sm-2 control-label">总价:</label>
-	            <div class="col-sm-10">
-	                <input type="text" ng-model="countAll" ng-disabled="countAllEdit" placeholder="总价">
-	            </div>
-	        </div>
-	    </form>
-	    <hr>
-	    <button class="btn btn-success center " ng-click="edititem('clear')">
-	        <img src="img/empty.png"></img>清空
-	    </button>
-</div>
+			<h2 ng-show="edit" class='TextShadow'>搜索商品:</h2>
+			<h2 ng-hide="edit" class='TextShadow'>编辑商品:</h2>
+			<hr>
+			<form class="form-horizontal">
+				<div class="form-group">
+		            <label class="col-sm-2 control-label">商品名:</label>
+		            <div class="col-sm-10 bar_search">
+		                <input type="text" ng-model="fName" ng-disabled="!edit" placeholder="请输入商品名" >
+		            </div>
+		        </div>
+		        <div class="form-group">
+		            <label class="col-sm-2 control-label">单价:</label>
+		            <div class="col-sm-10 bar">
+		                <input type="text" ng-model="price" ng-disabled="priceEdit" placeholder="单价">
+		            </div>
+		        </div>
+		        <div class="form-group">
+		            <label class="col-sm-2 control-label">数量:</label>
+		            <div class="col-sm-10 bar">
+		                <input type="text" ng-model="count" ng-disabled="edit" placeholder="请输入数量" >
+		                <button ng-click="count=count+1" ng-disabled="edit">+</button>
+		                <button ng-click="count=count-1" ng-disabled="edit || count<=0">-</button>
+		            </div>
+		        </div>
+		        <div class="form-group ">
+		            <label class="col-sm-2 control-label">总价:</label>
+		            <div class="col-sm-10 bar">
+		                <input type="text" ng-model="countAll" ng-disabled="countAllEdit" placeholder="总价">
+		            </div>
+		        </div>
+			</form>
+	    	<hr>
+		    <button class="btn btn-success center " ng-click="edititem('clear')">
+		        <img src="img/empty.png"></img>清空
+		    </button>
+		</div>
 
 		<div class="part3 col-md-5 col-md-offset-1">
-	    <hr>
-		<h2 class='TextShadow'>折扣:{{discount | currency}}</h2>
-	    <h2 class='TextShadow'>Total:{{afterdiscount | currency}}</h2>
-	    <hr>
-	    <button class="btn btn-success center" >
-	        <img src="img/ok.png"></img>  确定
-	    </button>
+			<h2 class='TextShadow'>结算:</h2>
+		    <hr>
+			<h2 class='TextShadow'>折扣:{{discount | currency}}</h2>
+		    <h2 class='TextShadow'>Total:{{afterdiscount | currency}}</h2>
+		    <hr>
+		    <button class="btn btn-success center" >
+		        <img src="img/ok.png"></img>  确定
+		    </button>
 		</div>
+	</div>
+
+	<div class="readme">
+		<p>Demo说明：</p>
+		<p>商品列表中，点击购物车图标，会带出商品信息，可以手动修改数量，总价会相应改变。</p>
+		<p>清空商品信息，手动输入商品名，若输入的商品名为存在的商品，会带出商品信息，可以手动修改数量，总价会相应改变。</p>
+		<p>若总价大于100会有20的折扣，Total为总价减去折扣。</p>
+		<p>数量旁边的加减号可增减数量，当数量小于等于0时无法继续相减，仅在有数量的时候才可以加减。</p>
+		<p>点击商品列表中的购物车图标，被选中的商品的购物车的图标的颜色会变为红色，若之后再选中其他的，此红色消失。</p>
 	</div>
 </body>
 </html>

@@ -1,0 +1,79 @@
+.HeadTitle{text-align:center;}/*标题*/
+
+.bar_search input{
+	background:#fff no-repeat 13px 13px;
+	background-image:url(../img/search.png);
+	background-size:20px 20px;
+	border: none;
+	width: 80%;
+	line-height: 19px;
+	padding: 11px 0;
+	border-radius: 10px;
+	box-shadow: 0 2px 8px #c4c4c4 inset;
+	text-align: left;
+	font-size: 14px;
+	font-family: inherit;
+	color: #738289;
+	font-weight: bold;
+	outline: none;
+	text-indent: 40px;
+}/*搜索商品输入框*/
+
+.bar input{
+	border: none;
+	width: 80%;
+	line-height: 19px;
+	padding: 11px 0;
+	border-radius: 10px;
+	box-shadow: 0 2px 8px #c4c4c4 inset;
+	text-align: left;
+	font-size: 14px;
+	font-family: inherit;
+	color: #738289;
+	font-weight: bold;
+	outline: none;
+	text-indent: 40px;
+}/*单价、数量、总价输入框*/
+
+img{width:18px;}/*图片大小*/
+
+.center,th,.table-width{text-align:center;}
+
+.part1{
+	border:2px rgba(60,150,200,0.5) solid;
+	border-radius:25px;
+	-moz-border-radius:25px; /* Old Firefox */
+}/*商品列表*/
+
+.Total,.TextShadow{
+	text-shadow: 3px 3px 3px #999;
+}/*文字阴影*/
+
+table tr td,table tr th{
+	border-bottom: 1px solid #ddd;
+	padding: 10px;
+	overflow: hidden;
+	font-weight: bold;
+	padding-top: 12px;
+	color:#6e7a7f;
+}/*表格*/
+
+table tr td img{
+	width:18px;
+	height:22px;
+	float:left;
+	border:none;
+}/*表格中的图片*/
+
+
+table tr td button.active{
+	background-color:#ff0000;
+	filter:alpha(opacity=50);  
+    -moz-opacity:0.5;  
+    -khtml-opacity: 0.5;  
+    opacity: 0.5;  
+}/*选中的购物车图标*/
+
+.readme{
+	margin-top: 50px;
+}/*demo说明*/
